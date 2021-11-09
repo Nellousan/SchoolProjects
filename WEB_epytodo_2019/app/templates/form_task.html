@@ -1,0 +1,35 @@
+<DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>My form</title>
+    </head>
+    <body>
+        <h1>My form</h1>
+        <form action="http://localhost:5000/user/{{username}}/create-task" method="GET">
+            <div>
+                <label for="title">Title :</label>
+                <input type="text" id="title" name="task_title">
+            </div>
+            <div>
+                <label for="begin">Begin :</label>
+                <input type="date" id="begin" name="task_begin">
+            </div>
+            <div>
+                <label for="end">End :</label>
+                <input type="date" id="end" name="task_end">
+            </div>
+            <div>
+                <label for="status">Status :</label>
+                <select name="status" size="1">
+                    <option>not started</option>
+                    <option>in progress</option>
+                    <option>done</option>
+                </select>
+            </div>
+            <div class="button">
+                <button type="submit">create task</button>
+            </div>
+        </form>
+    </body>
+</html>

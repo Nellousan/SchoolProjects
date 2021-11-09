@@ -1,0 +1,157 @@
+{% include 'result.html'%}
+
+ <section id="services" class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>List of Task</h3>
+                <table class="table" border="1">
+                    <thead>
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Begin</th>
+                            <th scope="col">End</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Modification</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if task[0] != 'end' %}
+                        <tr>
+                            <th scope="row">{{ task[0][1] }}</th>
+                            <td>{{ task[0][2] }}</td>
+                            <td>{{ task[0][3] }}</td>
+                            <td>{{ task[0][4] }}</td>
+                            <td>
+                                <form action="http://localhost:5000/user/{{username}}/{{task[0][0]}}/form-modif" method="GET">
+                                    <div class="button">
+                                        <button type="submit">Modification</button>
+                                    </div>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="http://localhost:5000/user/{{username}}/{{task[0][0]}}/remove-task" method="GET">
+                                    <div class="button">
+                                        <button type="submit">Delete</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        {% if task[1] != 'end' %}
+                        <tr>
+                            <th scope="row">{{ task[1][1] }}</th>
+                            <td>{{ task[1][2] }}</td>
+                            <td>{{ task[1][3] }}</td>
+                            <td>{{ task[1][4] }}</td>
+                            <td>
+                                <form action="http://localhost:5000/user/{{username}}/{{task[1][0]}}/form-modif" method="GET">
+                                    <div class="button">
+                                        <button type="submit">Modification</button>
+                                    </div>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="http://localhost:5000/user/{{username}}/{{task[1][0]}}/remove-task" method="GET">
+                                    <div class="button">
+                                        <button type="submit">Delete</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        {% if task[2] != 'end' %}
+                        <tr>
+                            <th scope="row">{{ task[2][1] }}</th>
+                            <td>{{ task[2][2] }}</td>
+                            <td>{{ task[2][3] }}</td>
+                            <td>{{ task[2][4] }}</td>
+                            <td>
+                                <form action="http://localhost:5000/user/{{username}}/{{task[2][0]}}/form-modif" method="GET">
+                                    <div class="button">
+                                        <button type="submit">Modification</button>
+                                    </div>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="http://localhost:5000/user/{{username}}/{{task[2][0]}}/remove-task" method="GET">
+                                    <div class="button">
+                                        <button type="submit">Delete</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        {% if task[3] != 'end' %}
+                        <tr>
+                            <th scope="row">{{ task[3][1] }}</th>
+                            <td>{{ task[3][2] }}</td>
+                            <td>{{ task[3][3] }}</td>
+                            <td>{{ task[3][4] }}</td>
+                            <td>
+                                <form action="http://localhost:5000/user/{{username}}/{{task[3][0]}}/form-modif" method="GET">
+                                    <div class="button">
+                                        <button type="submit">Modification</button>
+                                    </div>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="http://localhost:5000/user/{{username}}/{{task[3][0]}}/remove-task" method="GET">
+                                    <div class="button">
+                                        <button type="submit">Delete</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        {% if task[4] != 'end' %}
+                        <tr>
+                            <th scope="row">{{ task[4][1] }}</th>
+                            <td>{{ task[4][2] }}</td>
+                            <td>{{ task[4][3] }}</td>
+                            <td>{{ task[4][4] }}</td>
+                            <td>
+                                <form action="http://localhost:5000/user/{{username}}/{{task[4][0]}}/form-modif" method="GET">
+                                    <div class="button">
+                                        <button type="submit">Modification</button>
+                                    </div>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="http://localhost:5000/user/{{username}}/{{task[4][0]}}/remove-task" method="GET">
+                                    <div class="button">
+                                        <button type="submit">Delete</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        {% if task[5] != 'end' %}
+                        <tr>
+                            <th scope="row">{{ task[5][1] }}</th>
+                            <td>{{ task[5][2] }}</td>
+                            <td>{{ task[5][3] }}</td>
+                            <td>{{ task[5][4] }}</td>
+                            <td>
+                                <form action="http://localhost:5000/user/{{username}}/{{task[5][0]}}/form-modif" method="GET">
+                                    <div class="button">
+                                        <button type="submit">Modification</button>
+                                    </div>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="http://localhost:5000/user/{{username}}/{{task[5][0]}}/remove-task" method="GET">
+                                    <div class="button">
+                                        <button type="submit">Delete</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>    

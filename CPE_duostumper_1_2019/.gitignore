@@ -1,0 +1,10 @@
+*.o
+*.a
+*#
+*~
+\#*\#
+.\#*
+*.gcno
+*.gcda
+vgcore*
+fractals

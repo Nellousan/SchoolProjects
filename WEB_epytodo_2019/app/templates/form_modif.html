@@ -1,0 +1,48 @@
+<DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <title>My form</title>
+        </head>
+        <body>
+            <h1>My form</h1>
+            <form action="http://localhost:5000/user/{{username}}/{{task_id}}/modif" method="GET">
+                <div>
+                    <label for="title">Title :</label>
+                    <input type="text" id="title" name="task_title" value="{{title}}">
+                </div>
+                <div>
+                    <label for="begin">Begin :</label>
+                    <input type="date" id="begin" name="task_begin" value="{{begin}}">
+                </div>
+                <div>
+                    <label for="end">End :</label>
+                    <input type="date" id="end" name="task_end" value="{{end}}">
+                </div>
+                <div>
+                    <label for="status">Status :</label>
+                    <select name="status" size="1" value="{{status}}">
+                        {% if status == 'not started' %}
+                        <option>not started</option>
+                        <option>in progress</option>
+                        <option>done</option>
+                        {% endif%}
+                        {% if status == 'in progress' %}
+                        <option>in progress</option>
+                        <option>not started</option>
+                        <option>done</option>
+                        {% endif%}
+                        {% if status == 'done' %}
+                        <option>done</option>
+                        <option>not started</option>
+                        <option>in progress</option>
+                        {% endif%}
+                    </select>
+                </div>
+                <div class="button">
+                    <button type="submit">modif task</button>
+                </div>
+                <input type="reset">
+            </form>
+        </body>
+    </html>

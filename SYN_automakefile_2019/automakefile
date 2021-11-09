@@ -1,0 +1,172 @@
+##
+## EPITECH PROJECT, 2020
+## automakefile
+## File description:
+## d
+##
+
+if [[ -f "Makefile" ]]
+then
+    rm Makefile
+fi
+if [[ -z $1 ]]
+then
+    exit 84
+fi
+
+conf=$1
+IFS=';'
+source=()
+cc="gcc"
+exec="a.out"
+
+if [[ ! -f $conf || ! -r $conf ]]
+then
+    echo -e "Invalid argument"
+    exit 84
+fi
+
+while read line || [[ -n "$line" ]]
+do
+    arr=($line)
+    if [[ ${arr[0]} == "PROJECT_DIR" ]]
+    then
+        project_dir=${arr[1]}
+    elif [[ ${arr[0]} == "SOURCES_DIR" ]]
+    then
+        sources_dir=${arr[1]}
+    elif [[ ${arr[0]} == "HEADERS_DIR" ]]
+    then
+        headers_dir=${arr[1]}
+    elif [[ ${arr[0]} == "LIBS_DIR" ]]
+    then
+        libs_dir=${arr[1]}
+    elif [[ ${arr[0]} == "EXEC" ]]
+    then
+        exec=${arr[1]}
+    elif [[ ${arr[0]} == "CC" ]]
+    then
+        cc=${arr[1]}
+    elif [[ ${arr[0]} == "CFLAGS" ]]
+    then
+        cflags=${arr[1]}
+    elif [[ ${arr[0]} == "LDFLAGS" ]]
+    then
+        ldflags=${arr[1]}
+    elif [[ ${arr[0]} == "BCK_DIR" ]]
+    then
+        bck_dir=${arr[1]}
+    elif [[ ${arr[0]} == "ZIP" ]]
+    then
+        zip=${arr[1]}
+    elif [[ ${arr[0]} == "ZIPFLAGS" ]]
+    then
+        zipflags=${arr[1]}
+    elif [[ ${arr[0]} == "UNZIP" ]]
+    then
+        unzip=${arr[1]}
+    elif [[ ${arr[0]} == "UNZIPFLAGS" ]]
+    then
+        unzipflags=${arr[1]}
+    else
+        source+=(${arr[0]})
+    fi
+done < $conf
+
+if [[ -z $project_dir ]]
+then
+    exit 84
+fi
+
+if [[ -z $bck_dir ]]
+then
+    $bck_dir = "backup"
+fi
+
+if [[ -z $sources_dir ]]
+then
+    $sources_dir = "."
+fi
+
+if [[ -z $headers_dir ]]
+then
+    $headers_dir = "."
+fi
+
+if [[ -z $libs_dir ]]
+then
+    $libs_dir = "."
+fi
+
+
+# Parameters #
+
+printf "##\n## EPITECH PROJECT, 20\n## Auto Generated Makefile\n## File description:\n## by automakefile\n##\n\n" >> Makefile
+printf "SRCDIR\t=\t%s\n\n" "$sources_dir" >> Makefile
+printf "SRC\t=\t\t\\\\\n" >> Makefile
+for i in ${source[@]}
+do
+    printf "\t\t\$(SRCDIR)/%s\t\\\\\n" "$i" >> Makefile
+done
+printf "\nOBJ\t=\t\$(SRC:.c=.o)\n\n" >> Makefile
+printf "CC\t=\t%s\n\n" "$cc" >> Makefile
+printf "H_DIR\t=\t-I./%s\n\n" "$headers_dir" >> Makefile
+printf "L_DIR\t=\t-L./%s\n\n" "$libs_dir" >> Makefile
+printf "CFLAGS\t=\t%s \$(H_DIR)\n\n" "$cflags" >> Makefile
+printf "LDFLAGS\t=\t%s \$(L_DIR)\n\n" "$ldflags" >> Makefile
+printf "NAME\t=\t%s\n\n" "$exec" >> Makefile
+printf "BCK_DIR\t=\t%s\n\n" "$bck_dir" >> Makefile
+printf "ZIP\t=\t%s\n\n" "$zip" >> Makefile
+printf "ZIPFLAGS\t=\t%s\n\n" "$zipflags" >> Makefile
+printf "UNZIP\t=\t%s\n\n" "$unzip" >> Makefile
+printf "UNZIPFLAGS\t=\t%s\n\n" "$unzipflags" >> Makefile
+
+# Rules #
+
+printf "all:\t\$(NAME)\n\n" >> Makefile
+printf "\$(NAME):\t\$(OBJ)\n\t\$(CC) -o \$(NAME) \$(OBJ) \$(CFLAGS) \$(LDFLAGS)\n\n" >> Makefile
+printf "clean:\n\trm -f *.o *.gcno *.a\n\n" >> Makefile
+printf "fclean:\tclean\n\trm -f \$(NAME)\n\n" >> Makefile
+printf "re:\tfclean all\n\n" >> Makefile
+
+printf "archive:\n" >> Makefile
+printf "\t\$(eval FILE=\$(BCK_DIR)/.dummy)\n" >> Makefile
+printf "\t\$(eval VAR=\$(shell cat \$(FILE)))\n" >> Makefile
+printf "\t\$(eval VAR=\$(shell echo \$\$((\$(VAR)+1))))\n" >> Makefile
+printf "\t@\$(ZIP) \$(ZIPFLAGS) \$(BCK_DIR)/archive-v\$(VAR).zip \$(SRC)\n" >> Makefile
+printf "\t@echo -e '\$(BCK_DIR)/archive-v\$(VAR).zip file generated.'\n" >> Makefile
+printf "\trm \$(FILE)\n" >> Makefile
+printf "\t@echo '\$(VAR)' >> \$(FILE)\n\n" >> Makefile
+
+printf "revert:\n" >> Makefile
+printf "\t\$(eval FILE=\$(BCK_DIR)/.dummy)\n" >> Makefile
+printf "\t\$(eval VAR=\$(shell cat \$(FILE)))\n" >> Makefile
+printf "\t\$(UNZIP) \$(UNZIPFLAGS) \$(BCK_DIR)/archive-v\$(VAR).zip\n\n" >> Makefile
+
+printf "num:\n" >> Makefile
+printf "\t\$(eval VAR=\$(shell cat \$(BCK_DIR)/.dummy))\n" >> Makefile
+printf "\t@echo 'Version \$(VAR)'\n\n" >> Makefile
+
+printf "delete:\n" >> Makefile
+printf "\t\$(eval FILE=\$(BCK_DIR)/.dummy)\n" >> Makefile
+printf "\t\$(eval VAR=\$(shell cat \$(FILE)))\n" >> Makefile
+printf "\trm \$(BCK_DIR)/archive-v\$(VAR).zip\n" >> Makefile
+printf "\t\$(eval VAR=\$(shell echo \$\$((\$(VAR)-1))))\n" >> Makefile
+printf "\trm \$(FILE)\n" >> Makefile
+printf "\t@echo '\$(VAR)' >> \$(FILE)\n\n" >> Makefile
+
+printf ".PHONY: all clean fclean re archive revert num delete" >> Makefile
+
+
+if [[ ! -d $project_dir/$bck_dir ]]
+then
+    mkdir $project_dir/$bck_dir
+fi
+
+rm $project_dir/$bck_dir/.dummy
+printf "0" >> $project_dir/$bck_dir/.dummy
+
+# End #
+
+dir=$(printf "%s/Makefile" "$project_dir")
+mv Makefile $dir

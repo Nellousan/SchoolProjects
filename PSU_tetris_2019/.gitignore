@@ -1,0 +1,6 @@
+libmy.a
+*.o
+*.a
+*~
+*#
+vgcore*

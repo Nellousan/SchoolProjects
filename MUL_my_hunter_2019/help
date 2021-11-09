@@ -1,0 +1,14 @@
+----- HELP -----
+
+To launch the game, choose a map from the maps/ folder.
+Ex: ./my_hunter lost_woods
+(note: lost_woods is the easiest map)
+
+How to play:
+
+Squares will appear on the sides of the screen.
+The white approach squares are indicator of when exactly you have to click on the square.
+Click when the approach squares reach the borders of the squares.
+This is a rhythm game, feel the beat !
+
+----------------
